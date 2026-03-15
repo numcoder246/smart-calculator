@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit Converter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f7fa;
+      text-align: center;
+      padding: 50px;
+    }
+    .container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      width: 350px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+    select, input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Unit Converter</h2>
+    <input type="number" id="value" placeholder="Enter value">
+    <select id="conversion">
+      <option value="kg-lbs">Kilograms → Pounds</option>
+      <option value="lbs-kg">Pounds → Kilograms</option>
+      <option value="cm-in">Centimeters → Inches</option>
+      <option value="in-cm">Inches → Centimeters</option>
+      <option value="km-mi">Kilometers → Miles</option>
+      <option value="mi-km">Miles → Kilometers</option>
+    </select>
+    <button onclick="convert()">Convert</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function convert() {
+      let value = document.getElementById("value").value;
+      let type = document.getElementById("conversion").value;
+      let result = "";
+
+      if (!value) {
+        document.getElementById("result").innerHTML = "Please enter a value.";
+        return;
+      }
+
+      switch(type) {
+        case "kg-lbs":
+          result = (value * 2.20462).toFixed(2) + " lbs";
+          break;
+        case "lbs-kg":
+          result = (value / 2.20462).toFixed(2) + " kg";
+          break;
+        case "cm-in":
+          result = (value / 2.54).toFixed(2) + " in";
+          break;
+        case "in-cm":
+          result = (value * 2.54).toFixed(2) + " cm";
+          break;
+        case "km-mi":
+          result = (value * 0.621371).toFixed(2) + " miles";
+          break;
+        case "mi-km":
+          result = (value / 0.621371).toFixed(2) + " km";
+          break;
+      }
+
+      document.getElementById("result").innerHTML = "Converted Value: " + result;
+    }
+  </script>
+</body>
+</html>
